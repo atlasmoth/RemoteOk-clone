@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const faker = require("faker");
+const { default: validator } = require("validator");
 const initDb = require("./db");
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 console.log(faker.address.latitude());
+console.log(validator.isEmail("https://google.com"));
 
 initDb()
   .then(() => {
