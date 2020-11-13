@@ -3,6 +3,10 @@ const validator = require("validator");
 
 const jobSchema = new mongoose.Schema(
   {
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+    },
     position: {
       type: String,
       required: true,
@@ -46,11 +50,11 @@ const jobSchema = new mongoose.Schema(
         type: [Number],
         required: true,
       },
-      companyEmail: {
-        type: String,
-        validate: {
-          validator: validator.isEmail,
-        },
+    },
+    companyEmail: {
+      type: String,
+      validate: {
+        validator: validator.isEmail,
       },
     },
   },
