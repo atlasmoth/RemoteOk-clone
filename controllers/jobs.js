@@ -16,13 +16,14 @@ module.exports.getJobs = handleAsync(async function (req, res, next) {
 
 module.exports.createJob = handleAsync(async function (req, res, next) {
   const setup = {
+    creator: req.user._id,
     location: {
       type: "Point",
       coordinates: [faker.address.longitude(), faker.address.latitude()],
     },
     position: faker.lorem.text(),
     companyName: faker.lorem.text(),
-    logo: faker.lorem.text(),
+    logo: "images/dummy.jpg",
     salary: 50000,
     jobDescription: await promisify(fs.readFile)(path.resolve("demo.md"), {
       encoding: "utf-8",
@@ -31,5 +32,7 @@ module.exports.createJob = handleAsync(async function (req, res, next) {
     applyUrl: faker.internet.url(),
     companyEmail: faker.internet.email(),
   };
-  res.send(setup);
+  const job = new Job(setup);
+  await job.save();
+  res.send(job);
 });

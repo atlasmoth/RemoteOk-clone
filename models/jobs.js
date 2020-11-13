@@ -5,7 +5,7 @@ const jobSchema = new mongoose.Schema(
   {
     creator: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Company",
+      ref: "User",
     },
     position: {
       type: String,

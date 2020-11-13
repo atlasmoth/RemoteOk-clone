@@ -4,6 +4,7 @@ const faker = require("faker");
 const { default: validator } = require("validator");
 const initDb = require("./db");
 const jobsRouter = require("./routers/jobs");
+const usersRouter = require("./routers/users");
 
 const app = express();
 
@@ -15,6 +16,7 @@ console.log(faker.address.latitude());
 console.log(validator.isEmail("ebuka422@gmail.com"));
 
 app.use("/api/jobs", jobsRouter);
+app.use("/api/users", usersRouter);
 
 app.all("/*", (req, res, next) => {
   next(new Error("Wrong Route"));

@@ -9,7 +9,9 @@ module.exports.createUser = handleAsync(async function (req, res, next) {
     email: faker.internet.email(),
   };
   const user = await User.create(base);
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
   res.send({
     success: true,
     token,
@@ -18,10 +20,10 @@ module.exports.createUser = handleAsync(async function (req, res, next) {
 
 module.exports.auth = handleAsync(async (req, res, next) => {
   const {
-    headers: { Authorization },
+    headers: { authorization },
   } = req;
-  const token = Authorization.replace("Bearer ", "");
-  console.log(token);
+  const token = authorization.replace("Bearer ", "");
+
   const { id } = jwt.verify(token, process.env.JWT_SECRET);
   const user = await User.findById(id);
   if (!id || !user) return next(new Error("Invalid credentials"));
