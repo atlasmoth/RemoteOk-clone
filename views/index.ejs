@@ -8,15 +8,17 @@
     <div class="jobs">
       <% jobs.forEach(function(job) { %>
       <div class="job">
+        <img src="images/dummy.jpg" alt="logo" />
         <div class="information">
           <h4><%= job.companyName %></h4>
-          <hr />
           <h3><%= job.position %></h3>
         </div>
-        <div class="tags"></div>
-        <div class="apply">
-          <button>Apply</button>
+        <div class="tags">
+          <button>CSS</button>
+          <button>HTML</button>
+          <button>Javascript</button>
         </div>
+        <button class="apply">Apply</button>
         <!-- <h3><%= job.jobDescription %></h3> -->
       </div>
       <% }); %>

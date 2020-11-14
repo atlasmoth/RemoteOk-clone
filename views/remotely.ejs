@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./head.ejs"); %>
+  <body>
+    <div class="top">
+      <nav class="nav">
+        <ul class="navlist">
+          <li>
+            <a href="http://"><button>API</button></a>
+          </li>
+          <li>
+            <a href="/"><h1>Remote Ok</h1></a>
+          </li>
+          <li>
+            <a href="http://"><button class="apply">Remote Health</button></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <form action="/beans">
+        <div class="field">
+          <label for="companyName">Company Name * </label>
+          <input type="text" name="companyName" id="companyName" required />
+        </div>
+        <div class="field">
+          <label for="position">Position * </label>
+          <input type="text" name="position" id="position" required />
+        </div>
+        <div class="field">
+          <label for="primary">Primary Tag </label>
+          <input type="text" name="primary" id="primary" />
+        </div>
+        <div class="field">
+          <label for="location">Job is restricted to what location? </label>
+          <input type="text" name="location" id="location" />
+        </div>
+        <div class="field">
+          <label for="logo">Company Logo (.jpg/.png)</label>
+          <input type="file" name="logo" id="logo" accept=".jpg,.png" />
+        </div>
+        <div class="field">
+          <label for="salary">Annual Salary</label>
+          <input
+            type="number"
+            name="salary"
+            id="salary"
+            min="0"
+            step="1000"
+            value="50000"
+          />
+        </div>
+        <div class="field">
+          <label for="jobDescription">Job Description</label>
+          <textarea
+            name="jobDescription"
+            id="jobDescription"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <div class="field">
+          <label for="applyUrl">Apply URL*</label>
+          <input type="url" name="applyUrl" id="applyUrl" required />
+        </div>
+        <div class="field">
+          <label for="applyEmail">Apply Email*</label>
+          <input type="email" name="applyEmail" id="applyEmail" required />
+        </div>
+      </form>
+      <div class="bottom">
+        <button class="apply">Post Job</button>
+      </div>
+    </div>
+  </body>
+</html>
