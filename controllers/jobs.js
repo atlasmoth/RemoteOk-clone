@@ -13,6 +13,10 @@ module.exports.getJobs = handleAsync(async function (req, res, next) {
     jobs,
   });
 });
+module.exports.renderJobs = handleAsync(async function (req, res, next) {
+  const jobs = await Job.find({});
+  res.render("index", { jobs });
+});
 
 module.exports.createJob = handleAsync(async function (req, res, next) {
   const setup = {

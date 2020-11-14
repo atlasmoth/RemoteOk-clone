@@ -1,22 +1,23 @@
 require("dotenv").config();
 const express = require("express");
 const faker = require("faker");
-const { default: validator } = require("validator");
+
 const initDb = require("./db");
 const jobsRouter = require("./routers/jobs");
 const usersRouter = require("./routers/users");
+const webRouter = require("./web/home");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-
-console.log(faker.address.latitude());
-console.log(validator.isEmail("ebuka422@gmail.com"));
 
 app.use("/api/jobs", jobsRouter);
 app.use("/api/users", usersRouter);
+
+app.use("/", webRouter);
 
 app.all("/*", (req, res, next) => {
   next(new Error("Wrong Route"));
