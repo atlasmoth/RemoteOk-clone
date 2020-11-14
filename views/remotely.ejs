@@ -18,7 +18,7 @@
       </nav>
     </div>
     <div class="container">
-      <form action="/beans">
+      <form action="/beans" method="POST">
         <div class="field">
           <label for="companyName">Company Name * </label>
           <input type="text" name="companyName" id="companyName" required />
@@ -68,9 +68,27 @@
           <input type="email" name="applyEmail" id="applyEmail" required />
         </div>
       </form>
+      <div class="preview">
+        <div class="job">
+          <img src="images/dummy.jpg" alt="logo" />
+          <div class="information">
+            <h3>Position</h3>
+            <h4>Company</h4>
+          </div>
+          <div class="tags">
+            <button>CSS</button>
+            <button>HTML</button>
+            <button>Javascript</button>
+          </div>
+          <button class="apply">Apply</button>
+        </div>
+      </div>
+      <!-- demarcation chale -->
       <div class="bottom">
+        <h3 class="content"></h3>
         <button class="apply">Post Job</button>
       </div>
     </div>
+    <script src="script/remotely.js"></script>
   </body>
 </html>
