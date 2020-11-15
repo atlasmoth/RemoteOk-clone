@@ -42,3 +42,29 @@ module.exports.createJob = handleAsync(async function (req, res, next) {
   await job.save();
   res.send(job);
 });
+
+module.exports.create = handleAsync(async function (req, res, next) {
+  const { position, companyName, location, tags } = req.body;
+  const setup = {
+    creator: `5faee9e05e1f270bb0c3a1ce`,
+    location: {
+      type: "Point",
+      coordinates: [faker.address.longitude(), faker.address.latitude()],
+    },
+    position,
+    companyName,
+    range: location,
+    logo: "images/dummy.jpg",
+    salary: 50000,
+    jobDescription: await promisify(fs.readFile)(path.resolve("demo.md"), {
+      encoding: "utf-8",
+    }),
+    applyEmail: faker.internet.email(),
+    applyUrl: faker.internet.url(),
+    companyEmail: faker.internet.email(),
+    tags: [...tags.split(",")],
+  };
+  const job = new Job(setup);
+  await job.save();
+  res.redirect(301, "/");
+});

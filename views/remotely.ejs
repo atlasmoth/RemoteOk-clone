@@ -18,7 +18,7 @@
       </nav>
     </div>
     <div class="container">
-      <form action="/beans" method="POST">
+      <form action="/create" method="POST">
         <div class="field">
           <label for="companyName">Company Name * </label>
           <input type="text" name="companyName" id="companyName" required />
@@ -61,16 +61,17 @@
         </div>
         <div class="field">
           <label for="tags">Include Tags</label>
-          <input type="url" name="tags" id="tags" required />
+          <input type="text" name="tags" id="tags" />
         </div>
         <div class="field">
           <label for="applyUrl">Apply URL*</label>
-          <input type="url" name="applyUrl" id="applyUrl" required />
+          <input type="url" name="applyUrl" id="applyUrl" />
         </div>
         <div class="field">
           <label for="applyEmail">Apply Email*</label>
-          <input type="email" name="applyEmail" id="applyEmail" required />
+          <input type="email" name="applyEmail" id="applyEmail" />
         </div>
+        <button type="submit">Submit</button>
       </form>
 
       <!-- preview section -->
@@ -81,29 +82,24 @@
             <h3 data-information="position">Position</h3>
             <h4 data-information="companyName">Company</h4>
           </div>
-          <div class="tags" data-information="tags">
-            <button>CSS</button>
-            <button>HTML</button>
-            <button>Javascript</button>
-          </div>
+          <div class="tags" data-information="tags"></div>
           <button class="apply">Apply</button>
         </div>
         <div class="description" data-information="jobDescription"></div>
       </div>
       <!-- demarcation chale -->
-      <div class="bottom">
-        <div class="job">
-          <img src="images/dummy.jpg" alt="logo" data-information="logo" />
-          <div class="information">
-            <h3 data-information="position">Position</h3>
-            <h4 data-information="companyName">Company</h4>
-          </div>
-          <div class="tags" data-information="tags"></div>
-          <button class="apply">Apply</button>
+
+      <div class="job bottom">
+        <img src="images/dummy.jpg" alt="logo" data-information="logo" />
+        <div class="information">
+          <h3 data-information="position">Position</h3>
+          <h4 data-information="companyName">Company</h4>
         </div>
+        <div class="tags" data-information="tags"></div>
         <button class="apply">Post Job</button>
       </div>
     </div>
+
     <script src="script/remotely.js"></script>
   </body>
 </html>

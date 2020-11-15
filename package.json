@@ -17,6 +17,7 @@
     "faker": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.13",
+    "stripe": "^8.121.0",
     "validator": "^13.1.17"
   }
 }

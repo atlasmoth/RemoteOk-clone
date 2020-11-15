@@ -11,6 +11,8 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    range: String,
+    tags: [String],
     companyName: {
       type: String,
       required: true,

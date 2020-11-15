@@ -19,6 +19,15 @@ props.forEach((prop) => {
           source.innerHTML = e.target.value.split(",").reduce((acc, curr) => {
             return (acc += `<button>${curr}</button>`);
           }, ``);
+        } else if (
+          source.getAttribute("data-information") === "jobDescription"
+        ) {
+          let val = data.filter((node) => {
+            return node.getAttribute("data-information") === prop.name;
+          });
+          val.forEach((node) => {
+            node.innerHTML = marked(e.target.value);
+          });
         } else {
           source.innerText = e.target.value;
         }
