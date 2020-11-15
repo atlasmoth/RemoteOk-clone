@@ -60,6 +60,10 @@
           ></textarea>
         </div>
         <div class="field">
+          <label for="tags">Include Tags</label>
+          <input type="url" name="tags" id="tags" required />
+        </div>
+        <div class="field">
           <label for="applyUrl">Apply URL*</label>
           <input type="url" name="applyUrl" id="applyUrl" required />
         </div>
@@ -68,24 +72,35 @@
           <input type="email" name="applyEmail" id="applyEmail" required />
         </div>
       </form>
+
+      <!-- preview section -->
       <div class="preview">
         <div class="job">
-          <img src="images/dummy.jpg" alt="logo" />
+          <img src="images/dummy.jpg" alt="logo" data-information="logo" />
           <div class="information">
-            <h3>Position</h3>
-            <h4>Company</h4>
+            <h3 data-information="position">Position</h3>
+            <h4 data-information="companyName">Company</h4>
           </div>
-          <div class="tags">
+          <div class="tags" data-information="tags">
             <button>CSS</button>
             <button>HTML</button>
             <button>Javascript</button>
           </div>
           <button class="apply">Apply</button>
         </div>
+        <div class="description" data-information="jobDescription"></div>
       </div>
       <!-- demarcation chale -->
       <div class="bottom">
-        <h3 class="content"></h3>
+        <div class="job">
+          <img src="images/dummy.jpg" alt="logo" data-information="logo" />
+          <div class="information">
+            <h3 data-information="position">Position</h3>
+            <h4 data-information="companyName">Company</h4>
+          </div>
+          <div class="tags" data-information="tags"></div>
+          <button class="apply">Apply</button>
+        </div>
         <button class="apply">Post Job</button>
       </div>
     </div>

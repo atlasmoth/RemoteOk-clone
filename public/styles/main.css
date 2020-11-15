@@ -131,7 +131,6 @@ button {
   display: flex;
   padding: 1rem;
   justify-content: space-between;
-  flex-direction: row-reverse;
   align-items: center;
 }
 
