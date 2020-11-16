@@ -46,3 +46,48 @@ props.forEach((prop) => {
     });
   }
 });
+
+const stripe = Stripe(
+  "pk_test_51HLV5FE5bGjCBEBnb3nIZF8b8wxWp3pLRWgtvfpUoPWBcjb53lvXG3M399Jb48ZRvw4c3eO4YR4sP7LkXUfmCvlj00HPBBdQBL"
+);
+const elements = stripe.elements();
+
+const style = {
+  base: {
+    fontSize: "16px",
+    color: "#32325d",
+  },
+};
+
+const card = elements.create("card", { style });
+
+card.mount("#card-element");
+
+const stripeTokenHandler = (token) => {
+  // Insert the token ID into the form so it gets submitted to the server
+  const form = document.getElementById("payment-form");
+  const hiddenInput = document.createElement("input");
+  hiddenInput.setAttribute("type", "hidden");
+  hiddenInput.setAttribute("name", "stripeToken");
+  hiddenInput.setAttribute("value", token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+};
+
+const form = document.getElementById("payment-form");
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const { token, error } = await stripe.createToken(card);
+
+  if (error) {
+    // Inform the customer that there was an error.
+    const errorElement = document.getElementById("card-errors");
+    errorElement.textContent = error.message;
+  } else {
+    // Send the token to your server.
+    stripeTokenHandler(token);
+  }
+});

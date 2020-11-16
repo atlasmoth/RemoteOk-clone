@@ -4,6 +4,7 @@ const faker = require("faker");
 const { promisify } = require("util");
 const fs = require("fs");
 const path = require("path");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 module.exports.getJobs = handleAsync(async function (req, res, next) {
   //
@@ -45,7 +46,7 @@ module.exports.createJob = handleAsync(async function (req, res, next) {
 });
 
 module.exports.create = handleAsync(async function (req, res, next) {
-  const { position, companyName, location, tags } = req.body;
+  const { position, companyName, tags, stripeToken } = req.body;
   const setup = {
     creator: `5faee9e05e1f270bb0c3a1ce`,
     location: {
@@ -54,7 +55,7 @@ module.exports.create = handleAsync(async function (req, res, next) {
     },
     position,
     companyName,
-    range: location,
+    range: "worldwide",
     logo: "images/dummy.jpg",
     salary: 50000,
     jobDescription: await promisify(fs.readFile)(path.resolve("demo.md"), {
@@ -65,7 +66,15 @@ module.exports.create = handleAsync(async function (req, res, next) {
     companyEmail: faker.internet.email(),
     tags: [...tags.split(",")],
   };
-  const job = new Job(setup);
-  await job.save();
+
+  const charge = await stripe.charges.create({
+    amount: 300,
+    currency: "usd",
+    description: "Ad charge",
+    source: stripeToken,
+  });
+  console.log(charge);
+  const job = await Job.create(setup);
+
   res.redirect(301, "/");
 });
