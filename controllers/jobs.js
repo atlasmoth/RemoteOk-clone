@@ -15,7 +15,8 @@ module.exports.getJobs = handleAsync(async function (req, res, next) {
 });
 module.exports.renderJobs = handleAsync(async function (req, res, next) {
   const jobs = await Job.find({});
-  res.render("index", { jobs });
+  const marked = require("marked");
+  res.render("index", { jobs, marked });
 });
 module.exports.remotely = handleAsync(async (req, res, next) => {
   res.render("remotely");
