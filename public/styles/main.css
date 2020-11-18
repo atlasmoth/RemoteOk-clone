@@ -60,7 +60,7 @@ button {
     url("/images/banner.jpg");
   background-position: center;
   background-size: cover;
-  min-height: 40vh;
+  min-height: 45vh;
   color: #fff;
   position: relative;
 }
@@ -183,4 +183,20 @@ button {
 }
 .toggle {
   display: none;
+}
+
+/* search form */
+.search-form {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  justify-content: center;
+}
+#search {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  border: 0px;
+  outline: none;
+  flex-basis: 30vw;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 }

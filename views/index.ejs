@@ -15,9 +15,9 @@
             <h3><%= job.position %></h3>
           </div>
           <div class="tags">
-            <button>CSS</button>
-            <button>HTML</button>
-            <button>Javascript</button>
+            <% job.tags.forEach(function(tag){ %>
+            <button><%- tag %></button>
+            <% }); %>
           </div>
           <button class="apply">Apply</button>
         </div>

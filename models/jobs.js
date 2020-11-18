@@ -64,4 +64,10 @@ const jobSchema = new mongoose.Schema(
 );
 
 jobSchema.index({ location: "2dsphere" });
+jobSchema.index({
+  jobDescription: "text",
+  tags: "text",
+  position: "text",
+  companyName: "text",
+});
 module.exports = mongoose.model("Job", jobSchema);

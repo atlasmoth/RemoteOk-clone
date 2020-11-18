@@ -73,8 +73,14 @@ module.exports.create = handleAsync(async function (req, res, next) {
     description: "Ad charge",
     source: stripeToken,
   });
-  console.log(charge);
+
   const job = await Job.create(setup);
 
   res.redirect(301, "/");
+});
+
+module.exports.search = handleAsync(async (req, res, next) => {
+  const jobs = await Job.find({ $text: { $search: req.body.search } });
+  const marked = require("marked");
+  res.render("index", { jobs, marked });
 });

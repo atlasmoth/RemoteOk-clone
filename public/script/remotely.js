@@ -80,14 +80,8 @@ const form = document.getElementById("payment-form");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const { token, error } = await stripe.createToken(card);
+  const { token } = await stripe.createToken(card);
 
-  if (error) {
-    // Inform the customer that there was an error.
-    const errorElement = document.getElementById("card-errors");
-    errorElement.textContent = error.message;
-  } else {
-    // Send the token to your server.
-    stripeTokenHandler(token);
-  }
+  // Send the token to your server.
+  stripeTokenHandler(token);
 });
